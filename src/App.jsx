@@ -11,6 +11,7 @@ import AuthPage from './Components/AuthPage';
 import AddProduct from './Components/AddProducts';
 import RestoreProducts from './Components/RestoreProducts';
 import AdminRoute from './Components/AdminRoute';
+import CartPage from './Components/CartPage';
 import './App.css';
 
 function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
@@ -56,6 +57,7 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
           }
         />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/cart" element={<CartPage />} />
         
         {/* Admin routes */}
         <Route
