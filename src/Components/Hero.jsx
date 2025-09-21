@@ -12,7 +12,7 @@ export default function Hero() {
       <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
            <div className="hero-image-container">
     <div className="blob-background"></div>
-              <img src="https://ibb.co/Pv0311xn" alt="Hero Product" className="hero-image" />
+              <img src="https://i.ibb.co/4n3944WG/Hero-image.png" alt="Hero Product" className="hero-image" />
   </div>
 
       </motion.div>
