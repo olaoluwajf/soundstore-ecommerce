@@ -1,0 +1,89 @@
+.product-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-wrapper img {
+  width: 100%;
+  max-height: 200px;
+  border-radius: 0.8rem;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: orange;
+}
+
+.cart-btn {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.cart-btn.add {
+  background: orange;
+  color: black;
+}
+
+.cart-btn.add:hover {
+  background: #ff9500;
+}
+
+.cart-btn.remove {
+  background: transparent;
+  color: orange;
+  border: 1px solid orange;
+}
+
+.cart-btn.remove:hover {
+  background: rgba(255, 165, 0, 0.2);
+}
