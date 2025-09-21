@@ -111,7 +111,7 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/soundstore-ecommerce">
       <InnerApp
         search={search}
         setSearch={setSearch}
