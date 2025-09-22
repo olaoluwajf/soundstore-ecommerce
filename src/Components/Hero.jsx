@@ -1,4 +1,5 @@
 import './Hero.css';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
@@ -6,7 +7,7 @@ export default function Hero() {
     <section className="hero">
       <motion.div className="hero-text" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
         <h2>Shop Smart. <br /> Live Better.</h2>
-        <button>Shop Now</button>
+        <Link to="/products" className="hero-text-btn">Shop Now</Link>
       </motion.div>
       <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
            <div className="hero-image-container">
