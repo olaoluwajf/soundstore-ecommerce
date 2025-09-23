@@ -58,9 +58,11 @@ export default function Navbar({ search, setSearch }) {
           {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
         </Link>
 
+      
+      </div>
         {!user ? (
           <Link
-            to="/auth"
+            to="/login"
             className="auth-btn login-btn"
             onClick={() => setMenuOpen(false)}
           >
@@ -77,7 +79,6 @@ export default function Navbar({ search, setSearch }) {
             Sign Out
           </button>
         )}
-      </div>
     </nav>
   );
 }

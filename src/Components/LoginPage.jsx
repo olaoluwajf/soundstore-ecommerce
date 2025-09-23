@@ -1,16 +1,13 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { auth } from "../firebase/firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { admins } from "../roles"; 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { admins } from "../roles";
 import "./AuthPage.css";
 
-export default function AuthPage() {
-  const [isSignUp, setIsSignUp] = useState(true);
+export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
@@ -29,29 +26,15 @@ export default function AuthPage() {
     setSuccessMsg("");
 
     try {
-      if (isSignUp) {
-      
-        await createUserWithEmailAndPassword(auth, email, password);
-        setSuccessMsg("Account created successfully. Redirecting...");
-        setTimeout(() => navigate("/"), 1200);
-      } else {
-        
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        const user = userCredential.user;
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-        if (admins.includes(user.email)) {
-        
-          setSuccessMsg("Welcome Admin! Redirecting...");
-          setTimeout(() => navigate("/admin"), 1200); 
-        } else {
-          
-          setSuccessMsg("Welcome back! Redirecting...");
-          setTimeout(() => navigate("/"), 1200);
-        }
+      if (admins.includes(user.email)) {
+        setSuccessMsg("Welcome Admin! Redirecting...");
+        setTimeout(() => navigate("/admin"), 1200);
+      } else {
+        setSuccessMsg("Welcome back! Redirecting...");
+        setTimeout(() => navigate("/"), 1200);
       }
     } catch (err) {
       setAuthError(err.message);
@@ -62,7 +45,7 @@ export default function AuthPage() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>{isSignUp ? "Create an Account" : "Welcome Back"}</h2>
+        <h2>Welcome Back</h2>
 
         {authError && <p className="auth-error">{authError}</p>}
         {successMsg && <p className="auth-success">{successMsg}</p>}
@@ -97,14 +80,12 @@ export default function AuthPage() {
           )}
 
           <button type="submit" disabled={loading}>
-            {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Login"}
+            {loading ? "Please wait..." : "Login"}
           </button>
         </form>
 
-        <p className="toggle-text" onClick={() => setIsSignUp(!isSignUp)}>
-          {isSignUp
-            ? "Already have an account? Login"
-            : "Don't have an account? Sign Up"}
+        <p className="toggle-text" onClick={() => navigate("/signup")}>
+          Don't have an account? Sign Up
         </p>
       </div>
     </div>

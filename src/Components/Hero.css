@@ -1,8 +1,5 @@
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rem 3rem;
+  text-align: center;
   background-color: black;
   color: #fff;
   position: relative;
@@ -12,20 +9,17 @@
 
 
 .hero-text {
-  max-width: 50%;
+  text-align: center;
+  margin: auto;
+  margin-top: 15rem;
 }
 
 .hero-text h2 {
-  font-size: 4rem;
+  font-size: 6rem;
   margin-bottom: 1rem;
-  line-height: 4rem;
+  line-height: 6rem;
 }
 
-.hero-text p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: #ccc;
-}
 
 .hero-text-btn {
   padding: 0.75rem 1.5rem;
@@ -39,14 +33,15 @@
   transition: background 0.3s;
 }
 
-.hero-text button:hover {
-  background: #ffa500cc;
+.hero-text-btn:hover {
+  background: #ff9500;
+  color: black;
 }
 
 .blob-background {
     position: absolute;
-    top: 19px;
-    right: 19%;
+    top: -14rem;
+    right: -34rem;
     width: 40%;
     height: 80%;
     background: radial-gradient(circle at 30% 30%, #FF6B00, transparent 70%);
@@ -69,11 +64,11 @@
 }
 
     .hero-image {
-        position: relative;
-        z-index: 1;
-        left: 6rem;
-        bottom: 1rem;
-        width: 60%;
+        position: absolute;
+        z-index: 0;
+        left: 62rem;
+        bottom: 21rem;
+        width: 30%;
         height: auto;
         object-fit: contain;
         transition: transform 0.3s ease-in-out;

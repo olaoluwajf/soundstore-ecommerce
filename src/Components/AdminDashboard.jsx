@@ -69,7 +69,7 @@ export default function AdminDashboard() {
           <li onClick={() => navigate("/admin")}>Dashboard Home</li>
           <li onClick={goToAdd}>Add New Product</li>
           <li onClick={goToRestore}>Restore Deleted Products</li>
-          <li onClick={() => navigate("/auth")}>Log Out</li>
+          <li onClick={() => navigate("/login")}>Log Out</li>
         </ul>
       </aside>
 
