@@ -14,6 +14,7 @@ import SignUpPage from './Components/SignUpPage'
 import LoginPage from './Components/LoginPage'
 import AdminRoute from './Components/AdminRoute';
 import CartPage from './Components/CartPage';
+import Footer from './Components/Footer';
 import './App.css';
 
 function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
@@ -33,29 +34,37 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
                 removeFromCart={removeFromCart} 
                 cart={cart} 
               />
+              <Footer />
             </>
           }
         />
+      
         <Route
           path="/products"
           element={
+            <>
             <ProductPage 
               search={search} 
               addToCart={addToCart} 
               removeFromCart={removeFromCart} 
               cart={cart} 
             />
+            <Footer />
+            </>
           }
         />
         <Route
           path="/product/:id"
           element={
+            <>
             <ProductDetails
               products={products}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               cart={cart}
             />
+            <Footer/>
+            </>
           }
         />
         <Route path="/signup" element={<SignUpPage />} />
@@ -138,11 +147,13 @@ function InnerApp({ search, setSearch, cart, addToCart, removeFromCart }) {
   return (
     <>
       {!hideNavbar && (
+        <>
         <Navbar 
           search={search} 
           setSearch={setSearch} 
           cartCount={cart.length} 
         />
+        </>
       )}
 
       <AnimatedRoutes 

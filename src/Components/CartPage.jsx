@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
-import "./CartPage.css"; // optional CSS file
+import "./CartPage.css"; 
+
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -45,6 +46,7 @@ const CartPage = () => {
         </button>
         <button className="btn-checkout">Checkout</button>
       </div>
+
     </div>
   );
 };

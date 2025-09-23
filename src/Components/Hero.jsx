@@ -2,6 +2,7 @@ import './Hero.css';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+
 export default function Hero() {
   return (
     <section className="hero">
