@@ -4,7 +4,7 @@
   color: #fff;
   position: relative;
   overflow: hidden;
-  height: 100vh;
+  height: 110vh;
 }
 
 
@@ -99,7 +99,7 @@
 @media (max-width: 768px) {
 
 .hero-text{
-  top: -6rem;
+  top: -3rem;
   position: relative;
   text-align: left;
   right: -2rem;
