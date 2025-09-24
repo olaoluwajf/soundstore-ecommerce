@@ -11,3 +11,13 @@ html, body {
   width: 100%;
  overflow-x: hidden;
 }
+
+@media (max-width: 768px) {
+
+.footer-g {
+  position: relative;
+  top: -2rem;
+  right: 9rem;
+}
+
+}

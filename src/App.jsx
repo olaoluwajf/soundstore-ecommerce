@@ -34,7 +34,8 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
                 removeFromCart={removeFromCart} 
                 cart={cart} 
               />
-              <Footer />
+              <div className='footer-g'><Footer /></div>
+              
             </>
           }
         />

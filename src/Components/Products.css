@@ -1,9 +1,5 @@
 .products {
-  width: 60%;
-  position: relative;
-  top: -27rem;
-  right: 5.5rem;
-  margin: 0 auto;
+  padding: 3rem 5%;
   background: black;
   color: white;
     display: flex;
@@ -73,6 +69,14 @@
 
 
 @media (max-width: 768px) {
+  .products {
+    padding: 2rem 3%;
+    position: relative;
+    top: -38rem;
+    width: 60%;
+    height: 120vh;
+  }
+
   .product-grid {
         display: flex;
     flex-direction: column;
