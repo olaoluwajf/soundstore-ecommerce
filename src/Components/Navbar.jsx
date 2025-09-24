@@ -35,9 +35,14 @@ export default function Navbar({ search, setSearch }) {
       </Link>
 
       {/* Hamburger icon for mobile */}
-      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-        ☰
-      </div>
+  <div 
+    className={`hamburger ${menuOpen ? 'open' : ''}`} 
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
       {/* Search */}
       <input
