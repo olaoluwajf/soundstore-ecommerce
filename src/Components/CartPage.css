@@ -99,8 +99,11 @@
   background: #3e37c9;
 }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
+
+  .cart-container{
+    padding-top: 200px;
+  }
   .cart-item {
     flex-direction: column;
     align-items: center;
