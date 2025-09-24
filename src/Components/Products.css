@@ -1,5 +1,9 @@
 .products {
-  padding: 3rem 5%;
+  width: 60%;
+  position: relative;
+  top: -27rem;
+  right: 5.5rem;
+  margin: 0 auto;
   background: black;
   color: white;
     display: flex;
