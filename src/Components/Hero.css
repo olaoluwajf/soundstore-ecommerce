@@ -99,19 +99,16 @@
 @media (max-width: 768px) {
 
 .hero-text{
-  top: -2rem;
+  top: -6rem;
   position: relative;
+  text-align: left;
+  right: -2rem;
 }
 
 .hero-text h2{
   font-size: 4rem;
+  max-width: 50%;
   line-height: 3.4rem;
-}
-
-.hero-text p{
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  max-width: 600px;
 }
 
 .hero-image-background{
