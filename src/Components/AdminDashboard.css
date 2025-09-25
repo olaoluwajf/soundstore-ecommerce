@@ -7,7 +7,8 @@
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  outline: none;
 }
 
 body,
@@ -16,10 +17,43 @@ html,
   height: 100%
 }
 
+/* Light / Dark base */
+body.dark, .admin-dashboard.dark {
+  --bg: #070707;
+  --text: #f1f1f1;
+  --card: rgba(255,255,255,0.05);
+}
+body.light, .admin-dashboard.light {
+  --bg: #f9f9f9;
+  --text: #020202;
+  --card: rgba(0,0,0,0.05);
+}
+
+
+
+/* Sidebar theme button */
+.toggle-theme-btn {
+  display: block;
+  width: 100%;
+  background: var(--card);
+  color: var(--text);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: .5rem;
+  cursor: pointer;
+}
+.toggle-theme-btn:hover {
+  opacity: 0.8;
+}
+
+
 .admin-dashboard {
+  transition: background 0.4s ease;
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+    background: var(--bg);
+  color: var(--text);
   color: #fff;
   font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
 }
@@ -32,6 +66,7 @@ html,
   left: 0;
   top: 0;
   bottom: 0;
+  color: var(--text);
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.65), rgba(5, 5, 5, 0.55));
   backdrop-filter: blur(12px) saturate(1.1);
   border-right: 1px solid var(--glass-border);
@@ -440,7 +475,7 @@ display: none;
 
 @media (max-width: 640px) {
 
-  
+
   .search input {
     width: 120px;
   }

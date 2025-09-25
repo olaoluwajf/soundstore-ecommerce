@@ -1,4 +1,3 @@
-// src/Components/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
@@ -12,7 +11,7 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [query, setQuery] = useState("");
-
+  const [darkMode, setDarkMode] = useState(true);
   // fetch products from supabase
   const fetchProducts = async () => {
     setLoading(true);
@@ -32,6 +31,16 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+   useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+      document.body.classList.remove("light");
+    } else {
+      document.body.classList.add("light");
+      document.body.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   const totalProducts = products.filter((p) => !p.deleted).length;
   const deletedProducts = products.filter((p) => p.deleted).length;
@@ -67,7 +76,7 @@ export default function AdminDashboard() {
   );
 
   return (
-    <div className="admin-dashboard">
+        <div className={`admin-dashboard ${darkMode ? "dark" : "light"}`}>
       {/* overlay */}
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
@@ -100,10 +109,16 @@ export default function AdminDashboard() {
             <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M13 3a9 9 0 100 18 9 9 0 000-18zm-1 5v6l5 3 .75-1.23L14 13V8h-2z"/></svg>
             Restore Deleted
           </button>
-
+         
           <button onClick={() => { setSidebarOpen(false); navigate("/login"); }} className="nav-item danger">
             <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8v2h8v14h-8v2h8a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg>
             Log Out
+          </button>
+                            <button
+            className="toggle-theme-btn"
+            onClick={() => setDarkMode((d) => !d)}
+          >
+            {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
           </button>
         </nav>
 
