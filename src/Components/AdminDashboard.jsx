@@ -138,7 +138,6 @@ export default function AdminDashboard() {
               />
               <button className="btn-icon" title="Clear" onClick={() => setQuery("")}>✕</button>
             </div>
-
           </div>
         </header>
 
