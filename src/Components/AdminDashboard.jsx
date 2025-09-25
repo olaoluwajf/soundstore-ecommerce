@@ -1,3 +1,4 @@
+// src/Components/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
@@ -5,11 +6,14 @@ import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(false); // new state
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [query, setQuery] = useState("");
 
+  // fetch products from supabase
   const fetchProducts = async () => {
     setLoading(true);
     setMessage("");
@@ -49,107 +53,157 @@ export default function AdminDashboard() {
     }
   };
 
-  const goToAdd = () => navigate("/admin/add-product");
-  const goToRestore = () => navigate("/admin/restore-products");
+  const goToAdd = () => {
+    setSidebarOpen(false);
+    navigate("/admin/add-product");
+  };
+  const goToRestore = () => {
+    setSidebarOpen(false);
+    navigate("/admin/restore-products");
+  };
+
+  const filtered = products.filter((p) =>
+    (p.title || p.name || "").toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div className="admin-dashboard">
+      {/* overlay */}
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-
-            {sidebarOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={() => setSidebarOpen(false)}
-        ></div>
-      )}
-
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <h2 className="logo">Admin</h2>
-        <ul>
-          <li onClick={() => navigate("/admin")}>Dashboard Home</li>
-          <li onClick={goToAdd}>Add New Product</li>
-          <li onClick={goToRestore}>Restore Deleted Products</li>
-          <li onClick={() => navigate("/login")}>Log Out</li>
-        </ul>
+        <div className="sidebar-top">
+          <div className="logo">SoundStore</div>
+
+          <button
+            className="close-btn"
+            aria-label="Close sidebar"
+            onClick={() => setSidebarOpen(false)}
+          >
+            ✖
+          </button>
+        </div>
+
+        <nav className="sidebar-nav">
+          <button onClick={() => { setSidebarOpen(false); navigate("/admin"); }} className="nav-item">
+            <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zM13 21h8V11h-8v10zM13 3v6h8V3h-8z"/></svg>
+            Dashboard
+          </button>
+
+          <button onClick={goToAdd} className="nav-item">
+            <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M13 11h8v2h-8v8h-2v-8H3v-2h8V3h2v8z"/></svg>
+            Add Product
+          </button>
+
+          <button onClick={goToRestore} className="nav-item">
+            <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M13 3a9 9 0 100 18 9 9 0 000-18zm-1 5v6l5 3 .75-1.23L14 13V8h-2z"/></svg>
+            Restore Deleted
+          </button>
+
+          <button onClick={() => { setSidebarOpen(false); navigate("/login"); }} className="nav-item danger">
+            <svg className="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8v2h8v14h-8v2h8a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg>
+            Log Out
+          </button>
+        </nav>
+
+        <div className="sidebar-footer">
+          <small className="muted">SoundStore • Admin</small>
+        </div>
       </aside>
 
-
+      {/* Main */}
       <main className="main-content">
-        {/* Toggle Button (mobile only) */}
-        <button
-          className="menu-toggle"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          ☰
-        </button>
+        <header className="topbar">
+          <div className="left">
+            <button
+              className={`hamburger ${sidebarOpen ? "open" : ""}`}
+              onClick={() => setSidebarOpen((s) => !s)}
+              aria-label="Toggle menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
 
-        <h1>Admin Dashboard</h1>
-
-        <div className="dashboard-actions">
-          <button className="btn-add" onClick={goToAdd}>
-            + Add New Product
-          </button>
-          <button className="btn-restore" onClick={goToRestore}>
-            🔄 Restore Deleted Products
-          </button>
-        </div>
-
-        {message && <p className="admin-message">{message}</p>}
-
-        <div className="dashboard-summary">
-          <div className="card">
-            <h3>Total Products</h3>
-            <p>{totalProducts}</p>
+            <h1 className="title">Admin Dashboard</h1>
           </div>
-          <div className="card">
-            <h3>Deleted Products</h3>
-            <p>{deletedProducts}</p>
-          </div>
-          <div className="card">
-            <h3>All Items (incl. deleted)</h3>
-            <p>{products.length}</p>
-          </div>
-        </div>
 
-        <h2 className="products-title">Products</h2>
+          <div className="right">
+            <div className="search">
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search products..."
+              />
+              <button className="btn-icon" title="Clear" onClick={() => setQuery("")}>✕</button>
+            </div>
 
-        {loading ? (
-          <p>Loading products...</p>
-        ) : products.length === 0 ? (
-          <p>No products yet.</p>
-        ) : (
-          <div className="admin-grid">
-            {products.map((product) => (
-              <div className="admin-card" key={product.id}>
-                <img src={product.image} alt={product.title} />
-                <h3>{product.title}</h3>
-                <p className="muted">{product.category}</p>
-                <p className="price">${product.price}</p>
-
-                <div className="card-actions">
-                  {!product.deleted ? (
-                    <>
-                      <button
-                        onClick={() => navigate(`/product/${product.id}`)}
-                        className="btn-view"
-                      >
-                        View
-                      </button>
-                      <button
-                        onClick={() => softDeleteProduct(product.id)}
-                        className="btn-danger"
-                      >
-                        Move to Trash
-                      </button>
-                    </>
-                  ) : (
-                    <span className="muted">In Trash</span>
-                  )}
-                </div>
-              </div>
-            ))}
           </div>
-        )}
+        </header>
+
+        {/* actions + stats */}
+        <section className="top-row">
+          <div className="actions">
+            <button className="btn primary" onClick={goToAdd}>+ Add New Product</button>
+            <button className="btn outline" onClick={goToRestore}>🔄 Restore Deleted</button>
+          </div>
+
+          <div className="stats">
+            <div className="stat-card glow">
+              <div className="stat-label">Total</div>
+              <div className="stat-value">{totalProducts}</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-label">Deleted</div>
+              <div className="stat-value">{deletedProducts}</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-label">All Items</div>
+              <div className="stat-value">{products.length}</div>
+            </div>
+          </div>
+        </section>
+
+        {message && <div className="notice">{message}</div>}
+
+        <section className="admin-products-section">
+          <h2 className="section-title">Products</h2>
+
+          {loading ? (
+            <div className="loading">Loading products...</div>
+          ) : filtered.length === 0 ? (
+            <div className="empty">No products found.</div>
+          ) : (
+            <div className="admin-product-grid">
+              {filtered.map((p) => (
+                <article className="product-card" key={p.id}>
+                  <div className="media">
+                    <img src={p.image} alt={p.title} />
+                  </div>
+
+                  <div className="info">
+                    <h3 className="p-title">{p.title}</h3>
+                    <p className="p-category">{p.category}</p>
+                    <div className="p-bottom">
+                      <div className="price">${p.price}</div>
+                      <div className="actions-row">
+                        {!p.deleted ? (
+                          <>
+                            <button className="small-btn" onClick={() => navigate(`/product/${p.id}`)}>View</button>
+                            <button className="small-btn danger" onClick={() => softDeleteProduct(p.id)}>Trash</button>
+                          </>
+                        ) : (
+                          <span className="muted">In Trash</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
       </main>
     </div>
   );
