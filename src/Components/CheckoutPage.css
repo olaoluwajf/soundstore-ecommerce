@@ -81,14 +81,13 @@
 }
 
 .form-row input {
-  max-width: 180px;
-  flex: 1 1 140px;
+  max-width: 200px;
 }
 
 /* For mobile screens, reduce further */
 @media (max-width: 650px) {
   .checkout-container {
-    padding-top: 7.5rem; /* Increased from 3rem to push content below navbar */
+    padding-top: 8.5rem; /* Increased from 3rem to push content below navbar */
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
@@ -139,7 +138,7 @@
 
 @media (max-width: 400px) {
   .checkout-container {
-    padding-top: 6.5rem; /* Even more space for very small screens */
+    padding-top: 7.5rem; /* Even more space for very small screens */
     padding-left: 0.2rem;
     padding-right: 0.2rem;
   }
