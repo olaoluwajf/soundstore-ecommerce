@@ -1,5 +1,6 @@
-
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { auth } from "../firebase/firebase";
@@ -30,14 +31,14 @@ export default function LoginPage() {
       const user = userCredential.user;
 
       if (admins.includes(user.email)) {
-        setSuccessMsg("Welcome Admin! Redirecting...");
+        toast.success("Welcome Admin! Redirecting...");
         setTimeout(() => navigate("/admin"), 1200);
       } else {
-        setSuccessMsg("Welcome back! Redirecting...");
+        toast.success("Welcome back! Redirecting...");
         setTimeout(() => navigate("/"), 1200);
       }
     } catch (err) {
-      setAuthError(err.message);
+      toast.error("Invalid Credentials");
     }
     setLoading(false);
   };

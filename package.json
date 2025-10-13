@@ -1,5 +1,5 @@
 {
-  "homepage":"https://olaoluwajf.github.io/soundstore-ecommerce/",
+  "homepage": "https://olaoluwajf.github.io/soundstore-ecommerce/",
   "name": "ecommerce-site",
   "private": true,
   "version": "0.0.0",
@@ -10,8 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d dist"
-
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.0.1",
@@ -25,7 +24,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.62.0",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.7.1",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

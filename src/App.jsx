@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Hero from './Components/Hero';
 import ProductPage from './Components/ProductPage';
 import Navbar from './Components/Navbar';
@@ -100,7 +102,9 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
           }
         />
       </Routes>
+            <ToastContainer />
     </AnimatePresence>
+    
   );
 }
 
