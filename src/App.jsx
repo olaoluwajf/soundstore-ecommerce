@@ -9,6 +9,7 @@ import ProductDetails from './Components/ProductDetail';
 import AdminDashboard from './Components/AdminDashboard';
 import AuthPage from './Components/AuthPage';
 import AddProduct from './Components/AddProducts';
+import CheckoutPage from './Components/CheckoutPage'
 import RestoreProducts from './Components/RestoreProducts';
 import SignUpPage from './Components/SignUpPage'
 import LoginPage from './Components/LoginPage'
@@ -71,6 +72,7 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
         
         {/* Admin routes */}
         <Route

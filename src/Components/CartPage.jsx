@@ -1,6 +1,8 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
-import "./CartPage.css"; 
+import { Link } from 'react-router-dom';
+import "./CartPage.css";
+import EmptyCart from "./EmptyCart"; 
 
 
 const CartPage = () => {
@@ -8,9 +10,7 @@ const CartPage = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="cart-empty">
-        <h2>Your Cart is Empty 🛒</h2>
-      </div>
+     <EmptyCart />
     );
   }
 
@@ -44,7 +44,7 @@ const CartPage = () => {
         <button className="btn-clear" onClick={clearCart}>
           Clear Cart
         </button>
-        <button className="btn-checkout">Checkout</button>
+        <Link to='/checkout' className="btn-checkout">Checkout</Link>
       </div>
 
     </div>
