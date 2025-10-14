@@ -9,10 +9,13 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar({ search, setSearch }) {
   const [user, setUser] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false); // for hamburger menu
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const { cart, clearCart } = useCart();
+
+  // List of admin emails
+  const adminEmails = ["famirojujoshua@gmail.com"]; // Add your admin emails here
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -27,8 +30,8 @@ export default function Navbar({ search, setSearch }) {
     navigate('/');
   };
 
-  // Check admin status (example: store in localStorage on login)
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  // Email-based admin check
+  const isAdmin = user && adminEmails.includes(user.email);
 
   return (
     <nav className="navbar glass">
