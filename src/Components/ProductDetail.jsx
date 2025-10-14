@@ -1,15 +1,16 @@
 import './ProductDetail.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // <-- add useNavigate
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { useCart } from '../context/CartContext'; // 👈 import the hook
+import { useCart } from '../context/CartContext';
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate(); // <-- initialize navigate
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { cart, addToCart, removeFromCart } = useCart(); // 👈 get context data
+  const { cart, addToCart, removeFromCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -60,6 +61,15 @@ export default function ProductDetail() {
             Remove from Cart
           </button>
         )}
+
+        {/* Go Back Button */}
+        <button
+          className="back-btn"
+          style={{ marginTop: '1.5rem' }}
+          onClick={() => navigate('/products')}
+        >
+          ← Back to Products
+        </button>
       </div>
     </div>
   );

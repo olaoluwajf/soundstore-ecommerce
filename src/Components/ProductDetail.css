@@ -81,6 +81,17 @@
   background: #ff9500;
 }
 
+.back-btn{
+    background: transparent;
+  color: orange;
+  border: 1px solid orange;
+}
+
+.back-btn:hover{
+  background: rgba(255, 165, 0, 0.2);
+  outline: none;
+}
+
 .cart-btn.remove {
   background: transparent;
   color: orange;

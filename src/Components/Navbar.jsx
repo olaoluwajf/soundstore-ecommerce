@@ -27,6 +27,9 @@ export default function Navbar({ search, setSearch }) {
     navigate('/');
   };
 
+  // Check admin status (example: store in localStorage on login)
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+
   return (
     <nav className="navbar glass">
       {/* Logo */}
@@ -35,14 +38,14 @@ export default function Navbar({ search, setSearch }) {
       </Link>
 
       {/* Hamburger icon for mobile */}
-  <div 
-    className={`hamburger ${menuOpen ? 'open' : ''}`} 
-    onClick={() => setMenuOpen(!menuOpen)}
-  >
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+      <div 
+        className={`hamburger ${menuOpen ? 'open' : ''}`} 
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
       {/* Search */}
       <input
@@ -62,28 +65,51 @@ export default function Navbar({ search, setSearch }) {
           <FontAwesomeIcon icon={faShoppingCart} />
           {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
         </Link>
-
-      
       </div>
-        {!user ? (
-          <Link
-            to="/login"
-            className="auth-btn login-btn"
-            onClick={() => setMenuOpen(false)}
-          >
-            Sign Up / Login
-          </Link>
-        ) : (
-          <button
-            onClick={() => {
-              handleSignOut();
-              setMenuOpen(false);
-            }}
-            className="auth-btn logout-btn"
-          >
-            Sign Out
-          </button>
-        )}
+
+      {/* Admin Dashboard Button */}
+      {isAdmin && (
+        <button
+          className="dashboard-btn"
+          onClick={() => {
+            navigate("/admin");
+            setMenuOpen(false);
+          }}
+          style={{
+            marginLeft: "1rem",
+            background: "#ff9800",
+            color: "#fff",
+            borderRadius: "8px",
+            padding: "0.5em 1em",
+            border: "none",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Dashboard
+        </button>
+      )}
+
+      {/* Auth Buttons */}
+      {!user ? (
+        <Link
+          to="/login"
+          className="auth-btn login-btn"
+          onClick={() => setMenuOpen(false)}
+        >
+          Sign Up / Login
+        </Link>
+      ) : (
+        <button
+          onClick={() => {
+            handleSignOut();
+            setMenuOpen(false);
+          }}
+          className="auth-btn logout-btn"
+        >
+          Sign Out
+        </button>
+      )}
     </nav>
   );
 }
