@@ -23,8 +23,6 @@ useEffect(() => {
   fetchProducts();
 }, []);
 
-useEffect(()=>{ const cats = Array.from(new Set((products||[]).map(p=>p.category).filter(Boolean))); setCategories(cats); }, [products]);
-
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(search.toLowerCase())
   );

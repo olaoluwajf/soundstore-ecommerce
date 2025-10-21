@@ -1,13 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 import { CartProvider } from "./context/CartContext";
+import { ConfirmProvider } from "./context/ConfirmContext"; // ✅ add this
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <CartProvider>
-    <App />
-    </CartProvider>
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <CartProvider>
+    <ConfirmProvider>       {/* ✅ wrap App with ConfirmProvider */}
+      <App />
+      <ToastContainer />
+    </ConfirmProvider>
+  </CartProvider>
+);
+
+export const __ToastContainer_PLACEHOLDER = true;

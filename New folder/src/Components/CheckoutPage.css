@@ -1,20 +1,31 @@
 .checkout-container {
   min-height: 100vh;
-  padding: 6rem 2rem 2rem;
-  background: #000;
+  width: 100%;
+  position: absolute;
+  color: #fff;
+  padding-top: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .checkout-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
-  border-radius: 10px;
+  display: flex;
+  position: relative;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 3rem;
+  padding: 3rem;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
 }
 
+/* --- LEFT: Checkout Form --- */
 .checkout-form {
   flex: 1;
   min-width: 300px;
@@ -44,13 +55,13 @@
 }
 
 .checkout-form input {
-  width: 100%;
-  padding: 0.8rem;
+  margin-top: 0.4rem;
+  padding: 0.9rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: white;
-  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
   transition: border 0.3s ease, background 0.3s ease;
 }
 
@@ -61,8 +72,7 @@
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 1rem;
 }
 
@@ -273,15 +283,15 @@
 }
 
 .pay-btn {
-  width: 100%;
+  margin-top: 2rem;
   padding: 1rem;
-  background: #ff9800;
-  color: black;
+  background: linear-gradient(90deg, #ff8c00, #ff6600);
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -436,16 +446,6 @@
     padding-top: 2rem;
     min-width: unset;
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .checkout-wrapper {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
   }
 }
 

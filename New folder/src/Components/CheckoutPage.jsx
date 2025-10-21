@@ -1,12 +1,9 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import formatCurrency from '../utils/currency';
 import React, { useState } from "react";
 import "./CheckoutPage.css";
 import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const [showPayment, setShowPayment] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [paid, setPaid] = useState(false);
@@ -24,15 +21,13 @@ export default function CheckoutPage() {
     (sum, item) => sum + item.price * (item.quantity || 1),
     0
   );
-  const deliveryFee = subtotal > 0 ? 15 : 0;
+  const deliveryFee = subtotal > 0 ? 15 : 0; // delivery fee in Naira
   const total = subtotal + deliveryFee;
 
   const allFieldsFilled = Object.values(form).every((v) => v.trim() !== "");
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if(name === 'address' && value.includes('@')) return; // prevent email being pasted into address
-    setForm({ ...form, [name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   // Paystack payment handler
@@ -41,7 +36,7 @@ export default function CheckoutPage() {
     setProcessing(true);
 
     if (!window.PaystackPop) {
-      toast.error("Payment service not loaded. Please refresh and try again.");
+      toast.error('Payment service not loaded. Please refresh and try again.');
       setProcessing(false);
       return;
     }
@@ -170,7 +165,7 @@ export default function CheckoutPage() {
                     <img src={item.image} alt={item.name} />
                     <div>
                       <p>{item.name}</p>
-                      <span>${item.price.toFixed(2)}</span>
+                      <span>₦{item.price.toFixed(2)}</span>
                     </div>
                   </div>
                   <p className="item-qty">x{item.quantity || 1}</p>
@@ -181,18 +176,18 @@ export default function CheckoutPage() {
 
               <div className="summary-row">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>₦{subtotal.toFixed(2)}</span>
               </div>
               <div className="summary-row">
                 <span>Delivery Fee</span>
-                <span>${deliveryFee.toFixed(2)}</span>
+                <span>₦{deliveryFee.toFixed(2)}</span>
               </div>
 
               <div className="summary-divider"></div>
 
               <div className="summary-row total">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>₦{total.toFixed(2)}</span>
               </div>
             </div>
           ) : (

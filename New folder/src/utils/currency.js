@@ -1,0 +1,1 @@
+export default function formatCurrency(value){ try{ const n=Number(value)||0; return new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(n);}catch(e){ return '₦'+value;} }

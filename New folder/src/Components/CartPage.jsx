@@ -1,4 +1,3 @@
-import formatCurrency from '../utils/currency';
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from 'react-router-dom';
@@ -7,7 +6,7 @@ import EmptyCart from "./EmptyCart";
 
 
 const CartPage = () => {
-  const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
 
   if (cart.length === 0) {
     return (
@@ -28,7 +27,7 @@ const CartPage = () => {
             <img src={item.image} alt={item.name} className="cart-item-img" />
             <div className="cart-item-details">
               <h3>{item.name}</h3>
-              <p className="price">${formatCurrency(item.price)}</p>
+              <p className="price">₦{item.price}</p>
               <button
                 className="btn-remove"
                 onClick={() => removeFromCart(item.id)}
@@ -41,7 +40,7 @@ const CartPage = () => {
       </div>
 
       <div className="cart-summary">
-        <p className="total">Total: ${formatCurrency(total)}</p>
+        <p className="total">Total: ₦{total}</p>
         <button className="btn-clear" onClick={clearCart}>
           Clear Cart
         </button>

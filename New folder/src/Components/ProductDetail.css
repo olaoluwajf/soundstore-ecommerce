@@ -1,14 +1,13 @@
 .product-details {
-  position: relative;
-  margin-top: 6rem;
+    position: relative;
+    margin-top: 6rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 6rem 2rem 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 2rem 10rem;
+  color: white;
+  background: black;
   min-height: 100vh;
-  background: #000;
 }
 
 .image-section {
@@ -23,9 +22,9 @@
 
 .image-section img {
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
+  max-width: 400px;
+  border-radius: 1rem;
+  transition: transform 0.4s ease;
 }
 
 .image-section img:hover {
@@ -43,9 +42,8 @@
 }
 
 .details-section h1 {
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .category {
@@ -55,14 +53,14 @@
 
 .price {
   font-size: 1.5rem;
-  color: #ff9800;
-  font-weight: 600;
+  font-weight: bold;
+  color: orange;
 }
 
 .description {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin: 1rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ddd;
 }
 
 .cart-btn {
@@ -81,21 +79,6 @@
 
 .cart-btn.add:hover {
   background: #ff9500;
-}
-
-.back-btn {
-  margin-top: auto;
-  padding: 0.8rem 1.5rem;
-  border: 1px solid #ff9800;
-  color: #ff9800;
-  background: transparent;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.back-btn:hover {
-  background: rgba(255, 153, 0, 0.1);
 }
 
 .back-btn{

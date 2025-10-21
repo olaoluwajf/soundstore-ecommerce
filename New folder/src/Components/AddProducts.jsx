@@ -62,7 +62,7 @@ export default function AddProduct() {
 
         {msg && <p>{msg}</p>}
 
-        <form className="add-product-form" onSubmit={handleSubmit} style={{ maxWidth: 720 }}>
+        <form onSubmit={handleSubmit} style={{ maxWidth: 720 }}>
           <label>Title</label>
           <input name="title" value={form.title} onChange={onChange} />
 

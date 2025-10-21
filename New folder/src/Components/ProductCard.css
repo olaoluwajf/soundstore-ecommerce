@@ -1,0 +1,106 @@
+.product-card {
+  background: #1c1c1c; /* clean dark card */
+  border-radius: 1rem;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-link:hover{
+  color: white;
+}
+
+.image-wrapper {
+  background: #1c1c1c;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  margin-bottom: 20px;
+  transition: transform 0.4s ease;
+}
+
+.image-wrapper:hover{
+  transform: scale(1.1);
+}
+
+.product-image {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* max 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.6rem; /* ensure consistent space for titles */
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: orange;
+}
+
+/* ensures button stays in same spot */
+.button-wrapper {
+  margin-top: auto;
+}
+
+.cart-btn {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.cart-btn.add {
+  background: orange;
+  color: black;
+}
+
+.cart-btn.add:hover {
+  background: #ff9500;
+}
+
+.cart-btn.remove {
+  background: transparent;
+  color: orange;
+  border: 1px solid orange;
+}
+
+.cart-btn.remove:hover {
+  background: rgba(255, 165, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    height: 150px;
+  }
+  .title {
+    font-size: 0.95rem;
+  }
+}

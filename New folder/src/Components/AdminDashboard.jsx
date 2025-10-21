@@ -1,12 +1,9 @@
-import { useConfirm } from '../context/ConfirmContext';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
-  const { confirm } = useConfirm();
-
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
@@ -49,7 +46,7 @@ export default function AdminDashboard() {
   const deletedProducts = products.filter((p) => p.deleted).length;
 
   const softDeleteProduct = async (id) => {
-    if (!await confirm("Move product to trash?")) return;
+    if (!window.confirm("Move product to trash?")) return;
     try {
       const { error } = await supabase
         .from("Products")
@@ -79,14 +76,14 @@ export default function AdminDashboard() {
   );
 
   return (
-        <div className={`admin-dashboard ${darkMode ? "dark" : "light"}`}>
+        <div className={`admin-dashboard ₦{darkMode ? "dark" : "light"}`}>
       {/* overlay */}
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
       {/* Sidebar */}
-      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+      <aside className={`sidebar ₦{sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-top">
-          <div className="logo">SoundStore</div>
+          <div className="logo" style={{cursor: "pointer"}} onClick={() => navigate("/")}>SoundStore</div>
 
           <button
             className="close-btn"
@@ -135,7 +132,7 @@ export default function AdminDashboard() {
         <header className="topbar">
           <div className="left">
             <button
-              className={`hamburger ${sidebarOpen ? "open" : ""}`}
+              className={`hamburger ₦{sidebarOpen ? "open" : ""}`}
               onClick={() => setSidebarOpen((s) => !s)}
               aria-label="Toggle menu"
             >
@@ -203,11 +200,11 @@ export default function AdminDashboard() {
                     <h3 className="p-title">{p.title}</h3>
                     <p className="p-category">{p.category}</p>
                     <div className="p-bottom">
-                      <div className="price">${p.price}</div>
+                      <div className="price">₦{p.price}</div>
                       <div className="actions-row">
                         {!p.deleted ? (
                           <>
-                            <button className="small-btn" onClick={() => navigate(`/product/${p.id}`)}>View</button>
+                            <button className="small-btn" onClick={() => navigate(`/product/₦{p.id}`)}>View</button>
                             <button className="small-btn danger" onClick={() => softDeleteProduct(p.id)}>Trash</button>
                           </>
                         ) : (

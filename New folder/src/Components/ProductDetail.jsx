@@ -1,4 +1,3 @@
-import formatCurrency from '../utils/currency';
 import './ProductDetail.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -59,19 +58,26 @@ export default function ProductDetail() {
       <div className="details-section">
         <h1>{product.title}</h1>
         <p className="category">{product.category}</p>
-        <p className="price">${formatCurrency(product.price)}</p>
+        <p className="price">₦{product.price}</p>
         <p className="description">{product.description}</p>
 
         {!inCart ? (
-        <button
-  className="cart-btn add"
-  onClick={() => {
-    addToCart(product, qty);
-    toast.success("Product added to cart!");
-  }}
->
-  Add to Cart
-</button>
+        <div className="cart-actions">
+          <div className="qty-controls">
+            <button onClick={() => setQty(q => Math.max(1, q-1))}>-</button>
+            <span>{qty}</span>
+            <button onClick={() => setQty(q => q+1)}>+</button>
+          </div>
+          <button
+            className="cart-btn add"
+            onClick={() => {
+              addToCart(product, qty);
+              toast.success("Product added to cart!");
+            }}
+          >
+            Add to Cart
+          </button>
+        </div>
         ) : (
       <button
   className="cart-btn remove"

@@ -201,8 +201,12 @@
 }
 
 
-/* Mobile: show only hamburger and search */
-@media (max-width: 600px) {
-  .nav-actions > * { display: none; }
-  .nav-actions .hamburger, .nav-actions .search { display: flex !important; }
+/* Small screens: hide action buttons, keep hamburger and search */
+@media (max-width: 768px) {
+  .nav-actions > *:not(.hamburger):not(.search) {
+    display: none !important;
+  }
+  .nav-actions {
+    gap: 0.5rem;
+  }
 }

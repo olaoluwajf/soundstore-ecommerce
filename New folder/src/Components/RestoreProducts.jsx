@@ -1,12 +1,9 @@
-import { useConfirm } from '../context/ConfirmContext';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import "./AdminDashboard.css";
 
 export default function RestoreProducts() {
-  const { confirm } = useConfirm();
-
   const navigate = useNavigate();
   const [trash, setTrash] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,7 +40,7 @@ export default function RestoreProducts() {
   };
 
   const hardDelete = async (id) => {
-    if (!await confirm("Permanently delete this product? This cannot be undone.")) return;
+    if (!window.confirm("Permanently delete this product? This cannot be undone.")) return;
     try {
       const { error } = await supabase.from("Products").delete().eq("id", id);
       if (error) throw error;
@@ -77,7 +74,7 @@ export default function RestoreProducts() {
                 <img src={item.image} alt={item.title} />
                 <h3>{item.title}</h3>
                 <p className="muted">{item.category}</p>
-                <p className="price">${item.price}</p>
+                <p className="price">₦{item.price}</p>
 
                 <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
                   <button onClick={() => restore(item.id)}>Restore</button>
