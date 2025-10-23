@@ -1,6 +1,6 @@
 import { useConfirm } from '../context/ConfirmContext';
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import "./AdminDashboard.css";
 
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-top">
-          <div className="logo">SoundStore</div>
+          <Link to="/" className="logo">SoundStore</Link>
 
           <button
             className="close-btn"
@@ -207,7 +207,7 @@ export default function AdminDashboard() {
                       <div className="actions-row">
                         {!p.deleted ? (
                           <>
-                            <button className="small-btn" onClick={() => navigate(`/product/${p.id}`)}>View</button>
+                            <button className="small-btn" onClick={() => navigate(`/admin/product/${p.id}`)}>View</button>
                             <button className="small-btn danger" onClick={() => softDeleteProduct(p.id)}>Trash</button>
                           </>
                         ) : (

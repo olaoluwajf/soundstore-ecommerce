@@ -6,7 +6,7 @@ import "./CheckoutPage.css";
 import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const [showPayment, setShowPayment] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [paid, setPaid] = useState(false);
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
                     <img src={item.image} alt={item.name} />
                     <div>
                       <p>{item.name}</p>
-                      <span>${item.price.toFixed(2)}</span>
+                      <span>₦{item.price.toFixed(2)}</span>
                     </div>
                   </div>
                   <p className="item-qty">x{item.quantity || 1}</p>
@@ -181,18 +181,18 @@ export default function CheckoutPage() {
 
               <div className="summary-row">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>₦{subtotal.toFixed(2)}</span>
               </div>
               <div className="summary-row">
                 <span>Delivery Fee</span>
-                <span>${deliveryFee.toFixed(2)}</span>
+                <span>₦{deliveryFee.toFixed(2)}</span>
               </div>
 
               <div className="summary-divider"></div>
 
               <div className="summary-row total">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>₦{total.toFixed(2)}</span>
               </div>
             </div>
           ) : (

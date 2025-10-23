@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import "./AdminDashboard.css"; 
+import "./AdminDashboard.css";
 
 export default function AddProduct() {
   const navigate = useNavigate();
@@ -10,12 +10,13 @@ export default function AddProduct() {
     price: "",
     image: "",
     description: "",
-    category: ""
+    category: "",
   });
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const onChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const onChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,35 +35,43 @@ export default function AddProduct() {
         price: parseFloat(form.price),
         image: form.image || "",
         description: form.description || "",
-        deleted: false
+        Categories: form.category, // Matches your Supabase column name
+        deleted: false,
       };
 
-      const { data, error } = await supabase.from("Products").insert([product]);
+      const { error } = await supabase.from("Products").insert([product]);
 
       if (error) throw error;
 
-      setMsg("Product added.");
+      setMsg("✅ Product added successfully.");
       setLoading(false);
-      navigate("/admin"); 
+      navigate("/admin");
     } catch (err) {
       console.error(err);
-      setMsg("Failed to add product.");
+      setMsg("❌ Failed to add product.");
       setLoading(false);
     }
   };
 
   return (
     <div className="admin-dashboard" style={{ paddingTop: 40 }}>
+      {/* ✅ Sidebar back in */}
       <aside className="sidebar">
-        <h2 className="logo">Admin</h2>
+        <h2 className="logo" onClick={() => navigate("/")}>
+          Soundstore
+        </h2>
+       
       </aside>
 
       <main className="main-content">
         <h1>Add New Product</h1>
-
         {msg && <p>{msg}</p>}
 
-        <form className="add-product-form" onSubmit={handleSubmit} style={{ maxWidth: 720 }}>
+        <form
+          className="add-product-form"
+          onSubmit={handleSubmit}
+          style={{ maxWidth: 720 }}
+        >
           <label>Title</label>
           <input name="title" value={form.title} onChange={onChange} />
 
@@ -70,14 +79,41 @@ export default function AddProduct() {
           <input name="price" value={form.price} onChange={onChange} />
 
           <label>Image URL</label>
-          <input name="image" value={form.image} onChange={onChange} placeholder="https://..." />
+          <input
+            name="image"
+            value={form.image}
+            onChange={onChange}
+            placeholder="https://..."
+          />
 
           <label>Description</label>
-          <textarea name="description" value={form.description} onChange={onChange} rows={5} />
+          <textarea
+            name="description"
+            value={form.description}
+            onChange={onChange}
+            rows={5}
+          />
+
+          {/* ✅ Category field */}
+          <label>Category</label>
+          <input
+            name="category"
+            value={form.category}
+            onChange={onChange}
+            placeholder="e.g. Keyboards, Drums, Accessories"
+          />
 
           <div style={{ marginTop: 12 }}>
-            <button type="submit" disabled={loading}>Create Product</button>
-            <button type="button" onClick={() => navigate("/admin")} style={{ marginLeft: 8 }}>Cancel</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Adding..." : "Create Product"}
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/admin")}
+              style={{ marginLeft: 8 }}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </main>

@@ -32,6 +32,54 @@
   transition: transform 0.4s ease;
 }
 
+/* Quantity Control */
+.card-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 6px 10px;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.card-qty button {
+  background: #ff9500;
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.card-qty button:hover {
+  background: rgb(102, 56, 0);
+  transform: translateY(-1px);
+}
+
+.card-qty button:active {
+  transform: scale(0.95);
+}
+
+.card-qty span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  min-width: 24px;
+  text-align: center;
+}
+
+
 .image-wrapper:hover{
   transform: scale(1.1);
 }

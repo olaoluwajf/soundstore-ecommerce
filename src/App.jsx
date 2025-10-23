@@ -19,6 +19,7 @@ import AdminRoute from './Components/AdminRoute';
 import CartPage from './Components/CartPage';
 import Footer from './Components/Footer';
 import './App.css';
+import AdminProductDetail from './Components/AdminProductDetail';
 
 function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
   const location = useLocation();
@@ -101,6 +102,7 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
             </AdminRoute>
           }
         />
+        <Route path="/admin/product/:id" element={<AdminProductDetail />} />
       </Routes>
             <ToastContainer />
     </AnimatePresence>

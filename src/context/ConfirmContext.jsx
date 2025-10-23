@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import "../Components/AdminDashboard.css";
 const ConfirmContext = createContext();
 export function ConfirmProvider({ children }) {
   const [state, setState] = useState({ open: false, message: '', resolve: null });
@@ -13,8 +14,8 @@ export function ConfirmProvider({ children }) {
           <div className="confirm-modal">
             <p>{state.message}</p>
             <div className="confirm-actions">
-              <button className="btn cancel" onClick={cancel}>Cancel</button>
-              <button className="btn ok" onClick={ok}>Confirm</button>
+              <button className="small-btn" onClick={cancel}>Cancel</button>
+              <button className="small-btn danger" onClick={ok}>Confirm</button>
             </div>
           </div>
         </div>

@@ -88,7 +88,7 @@ export default function RestoreProducts() {
           </div>
         )}
         <div style={{ marginTop: 20 }}>
-          <button onClick={() => navigate("/admin")}>Back to dashboard</button>
+          <button className='back-btn' onClick={() => navigate("/admin")}>Back to dashboard</button>
         </div>
       </main>
     </div>

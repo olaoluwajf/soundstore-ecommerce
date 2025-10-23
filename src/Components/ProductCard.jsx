@@ -14,10 +14,10 @@ export default function ProductCard({ product }) {
         <div className="image-wrapper">
           <img src={product.image} alt={product.title} className="product-image" />
         </div>
-        <h3 className="title">{product.title}</h3>\n        {inCart && (<div className='card-qty'><button onClick={(e)=>{e.preventDefault(); updateQuantity(product.id, Math.max(1,(cart.find(i=>i.id===product.id)?.quantity||1)-1))}}>-</button><span>{cart.find(i=>i.id===product.id)?.quantity || 1}</span><button onClick={(e)=>{e.preventDefault(); updateQuantity(product.id,(cart.find(i=>i.id===product.id)?.quantity||1)+1)}}>+</button></div>)}
+        <h3 className="title">{product.title}</h3>       {inCart && (<div className='card-qty'><button onClick={(e) => { e.preventDefault(); updateQuantity(product.id, Math.max(1, (cart.find(i => i.id === product.id)?.quantity || 1) - 1)) }}>-</button><span>{cart.find(i => i.id === product.id)?.quantity || 1}</span><button onClick={(e) => { e.preventDefault(); updateQuantity(product.id, (cart.find(i => i.id === product.id)?.quantity || 1) + 1) }}>+</button></div>)}
       </Link>
 
-      <p className="price">${formatCurrency(product.price)}</p>
+      <p className="price">{formatCurrency(product.price)}</p>
 
       <div className="button-wrapper">
         {!inCart ? (
