@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import './Products.css';
-import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
 export default function Products({ addToCart, removeFromCart, cart, search }) {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,9 +29,9 @@ export default function Products({ addToCart, removeFromCart, cart, search }) {
   );
 
   return (
-    <section className="products">
+    <section className="featured-products">
       <h2>Featured Products</h2>
-      <div className="product-grid">
+      <div className="featured-grid">
         {loading
           ? Array.from({ length: 4 }).map((_, i) => <div key={i} className="product-skeleton" />)
           : filteredProducts.slice(0, 4).map(product => (
@@ -43,7 +44,11 @@ export default function Products({ addToCart, removeFromCart, cart, search }) {
               />
             ))}
       </div>
-      <Link to="/products" className="view-all-btn">View All Products</Link>
+      <div className="view-all-wrapper">
+        <button className="view-all-btn" onClick={() => navigate('/products')}>
+          View All Products
+        </button>
+      </div>
     </section>
   );
 }
