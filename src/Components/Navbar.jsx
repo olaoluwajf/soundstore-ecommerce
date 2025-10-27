@@ -9,7 +9,6 @@ import { faShoppingCart, faUserCircle } from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar({ search, setSearch }) {
   const [user, setUser] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -52,16 +51,6 @@ export default function Navbar({ search, setSearch }) {
         SoundStore
       </Link>
 
-      {/* Hamburger icon for mobile */}
-      <div
-        className={`hamburger ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
       {/* Search */}
       <input
         type="text"
@@ -71,33 +60,38 @@ export default function Navbar({ search, setSearch }) {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* Nav links */}
-      <div className={`nav-links ${menuOpen ? "show" : ""}`}>
-        <Link to="/" onClick={() => setMenuOpen(false)}>
-          Home
-        </Link>
-        <Link to="/products" onClick={() => setMenuOpen(false)}>
-          Products
-        </Link>
-        <Link to="/cart" className="cart-icon" onClick={() => setMenuOpen(false)}>
+      {/* Navigation Links (visible on desktop) */}
+      <div className="nav-links">
+        <Link to="/" >Home</Link>
+        <Link to="/products" >Products</Link>
+        <Link to="/cart" className="cart-icon">
           <FontAwesomeIcon icon={faShoppingCart} />
           {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
         </Link>
       </div>
 
-      {/* ✅ Profile dropdown (Admin + User) */}
-      {user ? (
-        <div className="profile-dropdown" ref={dropdownRef}>
-          <FontAwesomeIcon
-            icon={faUserCircle}
-            className="profile-icon"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-          />
-          {dropdownOpen && (
-            <div className="dropdown-menu">
-              <p className="dropdown-email">{user.email}</p>
+      {/* Profile / Menu dropdown (also contains nav links for mobile) */}
+      <div className="profile-dropdown" ref={dropdownRef}>
+        <FontAwesomeIcon
+          icon={faUserCircle}
+          className="profile-icon"
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+        />
+        {dropdownOpen && (
+          <div className="dropdown-menu">
+            {/* show email if logged in */}
+            {user && <p className="dropdown-email">{user.email}</p>}
+
+            {/* Navigation links included in dropdown for mobile */}
+            <div className="dropdown-links">
+              <Link to="/" onClick={() => setDropdownOpen(false)}>Home</Link>
+              <Link to="/products" onClick={() => setDropdownOpen(false)}>Products</Link>
+              <Link to="/cart" onClick={() => setDropdownOpen(false)} className="cart-link">
+                Cart {cart.length > 0 && <span className="cart-count-inline">({cart.length})</span>}
+              </Link>
               {isAdmin && (
                 <button
+                  className="dropdown-btn"
                   onClick={() => {
                     navigate("/admin");
                     setDropdownOpen(false);
@@ -106,26 +100,32 @@ export default function Navbar({ search, setSearch }) {
                   Dashboard
                 </button>
               )}
-              <button
-                onClick={() => {
-                  handleSignOut();
-                  setDropdownOpen(false);
-                }}
-              >
-                Sign Out
-              </button>
             </div>
-          )}
-        </div>
-      ) : (
-        <Link
-          to="/login"
-          className="auth-btn login-btn"
-          onClick={() => setMenuOpen(false)}
-        >
-          Sign Up / Login
-        </Link>
-      )}
+
+            <div className="dropdown-actions">
+              {user ? (
+                <button
+                  className="dropdown-btn"
+                  onClick={() => {
+                    handleSignOut();
+                    setDropdownOpen(false);
+                  }}
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="dropdown-btn"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Sign Up / Login
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }
