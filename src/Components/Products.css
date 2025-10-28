@@ -4,7 +4,7 @@
   max-width: 1400px;
   background-color: #000;
   margin: 0 auto;
- margin-top: -20em;
+
 }
 
 .featured-products h2 {
@@ -52,6 +52,7 @@
 @media (max-width: 768px) {
   .featured-products {
     padding: 2rem 1rem;
+     margin-top: -20em;
   }
 
   .featured-grid {

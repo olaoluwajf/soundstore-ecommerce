@@ -79,12 +79,15 @@ export default function AdminDashboard() {
   );
 
   return (
-        <div className={`admin-dashboard ${darkMode ? "dark" : "light"}`}>
-      {/* overlay */}
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+    <div className="admin-dashboard">
+      {/* Add overlay */}
+      <div 
+        className={`sidebar-overlay ${sidebarOpen ? 'show' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      />
 
       {/* Sidebar */}
-      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-top">
           <Link to="/" className="logo">SoundStore</Link>
 
@@ -130,18 +133,17 @@ export default function AdminDashboard() {
         </div>
       </aside>
 
-      {/* Main */}
       <main className="main-content">
-        <header className="topbar">
+        <div className="topbar">
           <div className="left">
-            <button
-              className={`hamburger ${sidebarOpen ? "open" : ""}`}
-              onClick={() => setSidebarOpen((s) => !s)}
-              aria-label="Toggle menu"
+            {/* Hamburger button */}
+            <button 
+              className={`hamburger ${sidebarOpen ? 'open' : ''}`}
+              onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <span />
-              <span />
-              <span />
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
 
             <h1 className="title">Admin Dashboard</h1>
@@ -157,7 +159,7 @@ export default function AdminDashboard() {
               <button className="btn-icon" title="Clear" onClick={() => setQuery("")}>✕</button>
             </div>
           </div>
-        </header>
+        </div>
 
         {/* actions + stats */}
         <section className="top-row">
