@@ -14,7 +14,9 @@
 body,
 html,
 #root {
-  height: 100%
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Light / Dark base */
@@ -788,8 +790,10 @@ body.light .add-product-form {
 
 /* Mobile "not accessible" page improvements */
 .mobile-error {
-  /* use large-viewport unit to avoid white bar on mobile browsers */
-  min-height: 100svh;
+  /* fixed fullscreen overlay so it never adds page height/scroll */
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  z-index: 2200;
   display: flex;
   align-items: center;
   justify-content: center;
