@@ -785,3 +785,61 @@ body.light .add-product-form {
   background: #ffffff;
   color: #222;
 }
+
+/* Mobile "not accessible" page improvements */
+.mobile-error {
+  /* use large-viewport unit to avoid white bar on mobile browsers */
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 6vw, 32px);
+  text-align: center;
+  box-sizing: border-box;
+  /* respect safe area on iOS/modern browsers */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  background: var(--bg);
+  color: var(--text, #fff);
+}
+
+.mobile-error-inner {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* action buttons row — spaced horizontally on most phones, stack on very narrow */
+.mobile-error-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ensure buttons have a pleasant minimum width and consistent height */
+.mobile-error-actions .btn {
+  min-width: 140px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* stack the buttons on very small screens while keeping spacing */
+@media (max-width: 420px) {
+  .mobile-error-actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .mobile-error-actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ensure muted paragraph uses theme color */
+.mobile-error .muted {
+  color: var(--muted, rgba(169,169,169,0.9));
+}

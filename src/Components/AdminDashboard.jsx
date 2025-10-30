@@ -72,44 +72,24 @@ export default function AdminDashboard() {
   // If on mobile, show an error page instead of the admin dashboard
   if (isMobile) {
     return (
-      <div className="mobile-error" style={{
-        minHeight: "100vh",
-        display: "flex",
-        background: "black",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "2rem",
-        textAlign: "center",
-      }}>
-        <div style={{maxWidth: 520}}>
-          <h1 style={{marginBottom: "0.5rem", color: "white"}}>Page not available on mobile</h1>
-          <p style={{marginBottom: "1rem", color: "var(--muted, #666)"}}>
+      <div className="mobile-error">
+        <div className="mobile-error-inner">
+          <h1>Page not available on mobile</h1>
+          <p className="muted">
             The admin dashboard can't be accessed on mobile devices. Please use a desktop or larger screen to manage products.
           </p>
-          <div>
+
+          <div className="mobile-error-actions">
             <button
+              className="btn outline"
               onClick={() => navigate("/")}
-              style={{
-                padding: "0.5rem 1rem",
-                marginRight: "0.5rem",
-                borderRadius: 6,
-                border: "1px solid #ccc",
-                background: "#fff",
-                cursor: "pointer"
-              }}
             >
               Return to Store
             </button>
+
             <button
+              className="btn primary"
               onClick={() => window.open("/", "_blank")}
-              style={{
-                padding: "0.5rem 1rem",
-                borderRadius: 6,
-                border: "none",
-                background: "orange",
-                color: "#fff",
-                cursor: "pointer"
-              }}
             >
               Open Store in New Tab
             </button>
