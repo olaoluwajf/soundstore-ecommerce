@@ -3,7 +3,7 @@
   padding-top: clamp(80px, 15vh, 140px);
   color: #fff;
   background: #000;
-  min-height: 100vh;
+  min-height: 100svh; /* use 100svh to avoid mobile address-bar gaps */
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
