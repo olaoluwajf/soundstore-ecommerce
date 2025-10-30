@@ -15,6 +15,8 @@ export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [darkMode, setDarkMode] = useState(true);
+  const [isMobile, setIsMobile] = useState(false); // added mobile state
+
   // fetch products from supabase
   const fetchProducts = async () => {
     setLoading(true);
@@ -44,6 +46,78 @@ export default function AdminDashboard() {
       document.body.classList.remove("dark");
     }
   }, [darkMode]);
+
+  // detect mobile viewport (<= 767px) and keep in sync on resize/orientation change
+  useEffect(() => {
+    const mqString = "(max-width: 767px)";
+    const mq = window.matchMedia(mqString);
+    const handleChange = () => setIsMobile(mq.matches);
+
+    handleChange();
+    if (mq.addEventListener) {
+      mq.addEventListener("change", handleChange);
+    } else {
+      // fallback for older browsers
+      mq.addListener(handleChange);
+    }
+    return () => {
+      if (mq.removeEventListener) {
+        mq.removeEventListener("change", handleChange);
+      } else {
+        mq.removeListener(handleChange);
+      }
+    };
+  }, []);
+
+  // If on mobile, show an error page instead of the admin dashboard
+  if (isMobile) {
+    return (
+      <div className="mobile-error" style={{
+        minHeight: "100vh",
+        display: "flex",
+        background: "black",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "2rem",
+        textAlign: "center",
+      }}>
+        <div style={{maxWidth: 520}}>
+          <h1 style={{marginBottom: "0.5rem", color: "white"}}>Page not available on mobile</h1>
+          <p style={{marginBottom: "1rem", color: "var(--muted, #666)"}}>
+            The admin dashboard can't be accessed on mobile devices. Please use a desktop or larger screen to manage products.
+          </p>
+          <div>
+            <button
+              onClick={() => navigate("/")}
+              style={{
+                padding: "0.5rem 1rem",
+                marginRight: "0.5rem",
+                borderRadius: 6,
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer"
+              }}
+            >
+              Return to Store
+            </button>
+            <button
+              onClick={() => window.open("/", "_blank")}
+              style={{
+                padding: "0.5rem 1rem",
+                borderRadius: 6,
+                border: "none",
+                background: "orange",
+                color: "#fff",
+                cursor: "pointer"
+              }}
+            >
+              Open Store in New Tab
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const totalProducts = products.filter((p) => !p.deleted).length;
   const deletedProducts = products.filter((p) => p.deleted).length;
