@@ -59,7 +59,7 @@ export default function ProductDetail() {
       <div className="details-section">
         <h1>{product.title}</h1>
         <p className="category">{product.category}</p>
-        <p className="price">${formatCurrency(product.price)}</p>
+        <p className="price">{formatCurrency(product.price)}</p>
         <p className="description">{product.description}</p>
 
         {!inCart ? (

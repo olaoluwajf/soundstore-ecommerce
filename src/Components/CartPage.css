@@ -3,6 +3,7 @@
   padding-top: clamp(80px, 15vh, 140px);
   color: #fff;
   background: #000;
+  min-height: 100vh; /* fallback for browsers that don't support svh */
   min-height: 100svh; /* use 100svh to avoid mobile address-bar gaps */
   max-width: 1200px;
   margin: 0 auto;
@@ -21,7 +22,8 @@
   margin-bottom: 30px;
 }
 
-.cart-items > .cart-item {
+/* replace strict child selector with descendant selector */
+.cart-items .cart-item {
   /* let grid control width */
   max-width: 100%;
 }
