@@ -676,3 +676,112 @@ padding: 30px;
     display: block;
   }
 }
+
+/* ensure price and actions sit nicely */
+.p-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+/* layout for the action buttons inside product cards */
+.product-card .actions-row,
+.admin-product-card .actions-row,
+.actions-row {
+  display: flex;
+  gap: 10px;       /* space between the two buttons */
+  align-items: center;
+}
+
+/* Light mode refinements to ensure readable contrast and consistent UI */
+body.light .admin-dashboard,
+body.light .main-content,
+body.light .title,
+body.light .search input,
+body.light .notice,
+body.light .stat-card,
+body.light .stat-card .stat-value,
+body.light .stat-card .stat-label,
+body.light .nav-item,
+body.light .section-title,
+body.light .admin-product-card,
+body.light .admin-product-card .p-title {
+  color: var(--text);
+  background: transparent;
+}
+
+/* Sidebar in light mode */
+body.light .sidebar {
+  background: #ffffff;
+  color: var(--text);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Search box in light mode */
+body.light .search {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+body.light .search input {
+  color: var(--text);
+}
+
+/* Product cards — use subtle light backgrounds and readable text */
+body.light .admin-product-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text);
+}
+body.light .admin-product-card .media {
+  background: #f6f7f8;
+}
+
+/* Stat cards and notice tweaks */
+body.light .stat-card {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+body.light .notice {
+  background: rgba(255, 107, 0, 0.06);
+  color: var(--accent);
+}
+
+/* Action buttons for light mode — ensure visible borders/contrast */
+body.light .btn.outline {
+  color: var(--accent);
+  border: 1px solid rgba(255, 107, 0, 0.12);
+  background: transparent;
+}
+body.light .btn.primary {
+  color: #fff; /* keep primary button readable on accent background */
+}
+
+/* Action buttons inside product cards — darker borders for visibility */
+body.light .actions-row button:first-child {
+  background: rgba(0, 150, 136, 0.06);
+  color: #00695c;
+  border: 1px solid rgba(0, 150, 136, 0.12);
+}
+body.light .actions-row button:last-child {
+  background: rgba(244, 67, 54, 0.06);
+  color: #b00020;
+  border: 1px solid rgba(244, 67, 54, 0.12);
+}
+
+/* Ensure hamburger / icon strokes are visible in light mode */
+body.light .hamburger span {
+  background: var(--text);
+}
+
+/* Make sure links and logo keep accent color in light mode */
+body.light .logo {
+  color: var(--accent);
+}
+
+/* small adjustments for form containers in light mode */
+body.light .add-product-form {
+  background: #ffffff;
+  color: #222;
+}
