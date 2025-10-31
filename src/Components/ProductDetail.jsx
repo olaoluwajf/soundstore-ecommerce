@@ -38,7 +38,7 @@ export default function ProductDetail() {
 
   if (loading) {
     return (
-      <div className="product-loading-wrapper">
+      <div className="product-loading-wrapper" style={{ background: "#000" }}>
         <div className="product-loading">
           <div className="spinner"></div>
           <p>Loading product details...</p>

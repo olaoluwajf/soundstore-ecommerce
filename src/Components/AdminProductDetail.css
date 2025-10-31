@@ -26,7 +26,7 @@
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
-  width: 80%;
+  width: 70%;
   height: auto;
   margin-left: 5rem;
 }
@@ -109,11 +109,12 @@
 }
 
 .admin-loading {
+  background: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  height: 100vh;      /* <-- ensures full viewport coverage */
   gap: 1rem;
 }
 

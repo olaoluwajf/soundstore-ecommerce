@@ -1,12 +1,10 @@
 .cart-container {
   padding-inline: clamp(12px, 4vw, 60px);
-  padding-top: clamp(80px, 15vh, 140px);
+  padding-top: clamp(100px, 18vh, 160px); /* Increased padding-top */
   color: #fff;
   background: #000;
   min-height: 100vh; /* fallback for browsers that don't support svh */
   min-height: 100svh; /* use 100svh to avoid mobile address-bar gaps */
-  max-width: 1200px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -125,7 +123,7 @@
 @media (max-width: 768px) {
   .cart-container {
     padding-inline: 16px;
-    padding-top: clamp(120px, 20vh, 200px);
+    padding-top: clamp(140px, 22vh, 220px); /* Increased padding-top for mobile */
   }
 
   .cart-item {
@@ -175,7 +173,7 @@
 @media (max-width: 480px) {
   .cart-container {
     padding-inline: 12px;
-    padding-top: clamp(110px, 22vh, 180px);
+    padding-top: clamp(130px, 26vh, 200px); /* Increased padding-top for extra small screens */
   }
 
   .cart-title {
