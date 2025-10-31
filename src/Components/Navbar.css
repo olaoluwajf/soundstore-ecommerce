@@ -211,9 +211,6 @@
 @media (min-width: 721px) {
   .dropdown-links {
     display: none;
-  } /* nav links visible in the nav-links area already */
-  .dropdown-menu {
-    min-width: 180px;
   }
 }
 

@@ -79,28 +79,28 @@ export default function Navbar({ search, setSearch }) {
         />
         {dropdownOpen && (
           <div className="dropdown-menu">
-            {/* show email if logged in */}
             {user && <p className="dropdown-email">{user.email}</p>}
 
-            {/* Navigation links included in dropdown for mobile */}
             <div className="dropdown-links">
               <Link to="/" onClick={() => setDropdownOpen(false)}>Home</Link>
               <Link to="/products" onClick={() => setDropdownOpen(false)}>Products</Link>
               <Link to="/cart" onClick={() => setDropdownOpen(false)} className="cart-link">
                 Cart {cart.length > 0 && <span className="cart-count-inline">({cart.length})</span>}
               </Link>
-              {isAdmin && (
-                <button
-                  className="dropdown-btn"
-                  onClick={() => {
-                    navigate("/admin");
-                    setDropdownOpen(false);
-                  }}
-                >
-                  Dashboard
-                </button>
-              )}
             </div>
+
+            {/* Move Dashboard button OUTSIDE dropdown-links */}
+            {isAdmin && (
+              <button
+                className="dropdown-btn"
+                onClick={() => {
+                  navigate("/admin");
+                  setDropdownOpen(false);
+                }}
+              >
+                Dashboard
+              </button>
+            )}
 
             <div className="dropdown-actions">
               {user ? (
