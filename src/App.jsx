@@ -105,14 +105,7 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
             </AdminRoute>
           }
         />
-        <Route
-          path="/admin/announcements"
-          element={
-            <AdminRoute>
-              <ManageAnnouncements />
-            </AdminRoute>
-          }
-        />
+
         <Route
           path="/admin/testimonials"
           element={
