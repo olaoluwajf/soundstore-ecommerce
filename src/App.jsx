@@ -20,6 +20,8 @@ import CartPage from './Components/CartPage';
 import Footer from './Components/Footer';
 import './App.css';
 import AdminProductDetail from './Components/AdminProductDetail';
+import ManageTestimonials from './Components/ManageTestimonials';
+import Testimonials from './Components/Testimonials';
 
 function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
   const location = useLocation();
@@ -32,14 +34,15 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
           element={
             <>
               <Hero />
-              <Products 
-                search={search} 
-                addToCart={addToCart} 
-                removeFromCart={removeFromCart} 
-                cart={cart} 
+              <Products
+                search={search}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+                cart={cart}
               />
+              <Testimonials />
               <div className='footer-g'><Footer /></div>
-              
+
             </>
           }
         />
@@ -102,6 +105,22 @@ function AnimatedRoutes({ search, addToCart, removeFromCart, cart, products }) {
             </AdminRoute>
           }
         />
+        <Route
+          path="/admin/announcements"
+          element={
+            <AdminRoute>
+              <ManageAnnouncements />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/testimonials"
+          element={
+            <AdminRoute>
+              <ManageTestimonials />
+            </AdminRoute>
+          }
+        />
         <Route path="/admin/product/:id" element={<AdminProductDetail />} />
       </Routes>
             <ToastContainer />
@@ -153,23 +172,25 @@ function InnerApp({ search, setSearch, cart, addToCart, removeFromCart }) {
   // hide Navbar on auth and admin pages
   const hideNavbar = location.pathname.startsWith('/signup') || location.pathname.startsWith('/login') || location.pathname.startsWith('/admin');
 
+  // announcements feature removed
+
   return (
     <>
       {!hideNavbar && (
         <>
-        <Navbar 
-          search={search} 
-          setSearch={setSearch} 
-          cartCount={cart.length} 
+        <Navbar
+          search={search}
+          setSearch={setSearch}
+          cartCount={cart.length}
         />
         </>
       )}
 
-      <AnimatedRoutes 
-        search={search} 
-        addToCart={addToCart} 
-        removeFromCart={removeFromCart} 
-        cart={cart} 
+      <AnimatedRoutes
+        search={search}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        cart={cart}
       />
     </>
   );
